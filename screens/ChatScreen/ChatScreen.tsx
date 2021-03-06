@@ -1,11 +1,20 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, View, TextInput, Image, FlatList, Text, Button, TouchableOpacity} from 'react-native';
+import { RouteProp, useRoute } from '@react-navigation/native';
+
 import {Liquidity} from '../BasePage/Liquidity/Liquidity';
 import {ChatMessage, User, UserChats} from "../../schema/user";
 import {TextXLarge} from '../../components/Typography';
 import {useUserChatsContextActions, useUserDataContext} from "../../contexts";
+import { StackParams } from '../../navigation';
+
+type RouteProps = RouteProp<StackParams, 'ChatScreen'>;
 
 export const ChatScreen = () => {
+    const { params } = useRoute<RouteProps>();
+    const { friendUserId } = params;
+    console.log(friendUserId);
+
     const [newMessageText, setNewMessageText] = useState('');
     const [messages, setMessages] = useState<ChatMessage[]>([]);
 
@@ -15,7 +24,7 @@ export const ChatScreen = () => {
 
 
     useEffect(() => {
-        const c = fetchChatConversation('2');
+        const c = fetchChatConversation(friendUserId);
         if (c) {
             setMessages(c.messages);
         }

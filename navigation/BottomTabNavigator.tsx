@@ -9,6 +9,7 @@ import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
 import {ChatScreen} from "../screens/ChatScreen/ChatScreen";
+import { ChatListScreen } from '../screens/ChatsListScreen/ChatsListScreen';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -52,7 +53,7 @@ function TabOneNavigator() {
     <TabOneStack.Navigator>
       <TabOneStack.Screen
         name="TabOneScreen"
-        component={ChatScreen}
+        component={ChatListScreen}
         options={{ headerTitle: 'Tab One Title' }}
       />
     </TabOneStack.Navigator>

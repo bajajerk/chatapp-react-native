@@ -5,9 +5,12 @@ export interface User {
 
 // id1 will always by current user id
 export interface UserChats {
+    id: string,
     id1: string,
     id2: string,
-    messages: ChatMessage[]
+    user2Name: string,
+    user2ImageUrl: string,
+    messages: ChatMessage[],
 }
 
 export interface ChatMessage {
