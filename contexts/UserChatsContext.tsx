@@ -7,13 +7,13 @@ const db = [
         id2: '2',
         messages: [
             {
-            id: '33',
-            text: 'hello',
-            type: 'TEXT',
-            timeStamp: '123121212',
-            sentById: '1',
-            receivedById: '2'
-        },
+                id: '33',
+                text: 'hello2',
+                type: 'TEXT',
+                timeStamp: '123121212',
+                sentById: '1',
+                receivedById: '2'
+            },
             {
                 id: '3233',
                 text: 'hello Ok',

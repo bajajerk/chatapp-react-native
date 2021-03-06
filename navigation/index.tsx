@@ -2,15 +2,26 @@ import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 import { ColorSchemeName } from 'react-native';
+import {useEffect} from "react";
+
 
 import NotFoundScreen from '../screens/NotFoundScreen';
 import { RootStackParamList } from '../types';
 import BottomTabNavigator from './BottomTabNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
+import {useUserDataContextActions} from "../contexts";
 
 // If you are not familiar with React Navigation, we recommend going through the
 // "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
+
+    const {setUserData} = useUserDataContextActions();
+    useEffect(() => {
+        setUserData({
+            id: '1',
+            name: 'Mayank Bajaj'
+        })
+    }, [])
   return (
     <NavigationContainer
       linking={LinkingConfiguration}

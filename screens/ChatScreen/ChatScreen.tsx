@@ -1,17 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, View, TextInput, Image, FlatList, Text, Button, TouchableOpacity} from 'react-native';
 import {Liquidity} from '../BasePage/Liquidity/Liquidity';
-import {ChatMessage, UserChats} from "../../schema/user";
+import {ChatMessage, User, UserChats} from "../../schema/user";
 import {TextXLarge} from '../../components/Typography';
-import {useUserChatsContextActions} from "../../contexts";
+import {useUserChatsContextActions, useUserDataContext} from "../../contexts";
 
 export const ChatScreen = () => {
     const [newMessageText, setNewMessageText] = useState('');
     const [messages, setMessages] = useState<ChatMessage[]>([]);
 
     const {fetchChatConversation, addMessageToChat} = useUserChatsContextActions();
+    const {user} = useUserDataContext();
+    const userId = (user as User).id
 
-    const userId = '1';
 
     useEffect(() => {
         const c = fetchChatConversation('2');
@@ -22,7 +23,6 @@ export const ChatScreen = () => {
 
 
     const sendMessage = () => {
-        console.log("INIT")
         const newMessage = {
             receivedById: '2',
             sentById: userId,
@@ -34,7 +34,6 @@ export const ChatScreen = () => {
         addMessageToChat('2', newMessage);
         messages.push(newMessage)
         setNewMessageText('')
-
     };
 
     return (

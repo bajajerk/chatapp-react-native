@@ -1,7 +1,7 @@
 import {StatusBar} from 'expo-status-bar';
 import React from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {UserChatContext} from './contexts';
+import {UserChatContext, UserGlobalContext} from './contexts';
 
 
 import useCachedResources from './hooks/useCachedResources';
@@ -17,10 +17,12 @@ export default function App() {
     } else {
         return (
             <SafeAreaProvider>
-                <UserChatContext>
-                    <Navigation colorScheme={colorScheme}/>
-                    <StatusBar/>
-                </UserChatContext>
+                <UserGlobalContext>
+                    <UserChatContext>
+                        <Navigation colorScheme={colorScheme}/>
+                        <StatusBar/>
+                    </UserChatContext>
+                </UserGlobalContext>
             </SafeAreaProvider>
         );
     }
