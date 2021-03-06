@@ -3,6 +3,7 @@ export interface User {
     id: string
 }
 
+// id1 will always by current user id
 export interface UserChats {
     id1: string,
     id2: string,
@@ -10,6 +11,7 @@ export interface UserChats {
 }
 
 export interface ChatMessage {
+    id: string,
     text: string,
     type: string,
     timeStamp: string,

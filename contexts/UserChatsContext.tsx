@@ -1,6 +1,36 @@
 import React, {useState, useContext, ReactNode, createContext, useMemo} from 'react';
 import {ChatMessage, UserChats} from '../schema/user';
 
+const db = [
+    {
+        id1: '1',
+        id2: '2',
+        messages: [
+            {
+            id: '33',
+            text: 'hello',
+            type: 'TEXT',
+            timeStamp: '123121212',
+            sentById: '1',
+            receivedById: '2'
+        },
+            {
+                id: '3233',
+                text: 'hello Ok',
+                type: 'TEXT',
+                timeStamp: '123121212',
+                sentById: '2',
+                receivedById: '1'
+            },
+        ]
+    },
+    {
+        id1: '1',
+        id2: '4',
+        messages: []
+    },
+];
+
 interface GlobalUserChatsProviderProps {
     children: ReactNode;
 }
@@ -15,14 +45,15 @@ const initialState: UserChatsSchema = {
 
 interface UserChatActionsSchema {
     initialiseUserChats: (userChats: UserChats[]) => void;
-    addMessageToChat: (id2: string, message: ChatMessage);
+    addMessageToChat: (id2: string, message: ChatMessage) => void;
+    fetchChatConversation: (id2: string) => UserChats | undefined;
 }
 
 const UserChatsContext = createContext<UserChatsSchema>(initialState);
 const ContentContextActions = createContext<UserChatActionsSchema | undefined>(undefined);
 
 export const UserChatContext = ({children}: GlobalUserChatsProviderProps) => {
-    const [chats, setChats] = useState<UserChats[]>([]);
+    const [chats, setChats] = useState<UserChats[]>(db);
 
 
     const initialiseUserChats = (userChats: UserChats[]) => {
@@ -41,19 +72,22 @@ export const UserChatContext = ({children}: GlobalUserChatsProviderProps) => {
         setChats(userChatsCopy);
     }
 
+    const fetchChatConversation = (id2: string) => {
+        // console.log(chats)
+        return (chats.find((c) => c.id2 === id2));
+    }
 
     const actions = useMemo(
         () => ({
             initialiseUserChats,
             addMessageToChat,
-
-
+            fetchChatConversation
         }),
         [
             initialiseUserChats,
             addMessageToChat,
-
-            ],
+            fetchChatConversation
+        ],
     );
 
     const state = useMemo(() => {
