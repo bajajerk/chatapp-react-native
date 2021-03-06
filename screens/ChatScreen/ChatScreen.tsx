@@ -2,28 +2,39 @@ import React, {useEffect, useState} from 'react';
 import {StyleSheet, View, TextInput, Image, FlatList, Text, Button, TouchableOpacity} from 'react-native';
 import {Liquidity} from '../BasePage/Liquidity/Liquidity';
 import {ChatMessage, UserChats} from "../../schema/user";
-import {TextMedium, TextXLarge} from '../../components/Typography';
-import {useUserChatsContext, useUserChatsContextActions} from "../../contexts";
+import {TextXLarge} from '../../components/Typography';
+import {useUserChatsContextActions} from "../../contexts";
 
 export const ChatScreen = () => {
     const [newMessageText, setNewMessageText] = useState('');
     const [messages, setMessages] = useState<ChatMessage[]>([]);
 
-    const {userChats} = useUserChatsContext();
-    const {fetchChatConversation} = useUserChatsContextActions();
+    const {fetchChatConversation, addMessageToChat} = useUserChatsContextActions();
 
     const userId = '1';
 
     useEffect(() => {
-        const c= fetchChatConversation('2');
-        if(c){
+        const c = fetchChatConversation('2');
+        if (c) {
             setMessages(c.messages);
         }
-        // setMessages(c);
     }, [])
 
 
-    const sendMessage = async () => {
+    const sendMessage = () => {
+        console.log("INIT")
+        const newMessage = {
+            receivedById: '2',
+            sentById: userId,
+            id: Math.random().toString(),
+            text: newMessageText,
+            timeStamp: Date.now().toString(),
+            type: 'TEXT'
+        }
+        addMessageToChat('2', newMessage);
+        messages.push(newMessage)
+        setNewMessageText('')
+
     };
 
     return (
@@ -32,7 +43,6 @@ export const ChatScreen = () => {
             <View style={{flex: 1}}>
                 <FlatList
                     data={messages}
-                    inverted={true}
                     renderItem={({item}) => {
                         return (
                             <View
