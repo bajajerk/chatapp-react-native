@@ -5,7 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 
 import {useUserChatsContext} from "../../contexts";
-import {StackParams} from '../../navigation';
+import { StackParams } from '../../stackparams';
 
 type NavigationProps = StackNavigationProp<StackParams, 'ChatListScreen'>;
 
