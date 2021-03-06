@@ -1,4 +1,5 @@
-import React, {useState, useContext, ReactNode, createContext, useMemo} from 'react';
+import React, {createContext, ReactNode, useContext, useMemo, useState} from 'react';
+
 import {User} from '../schema/user';
 
 interface GlobalUserChatsProviderProps {
@@ -6,11 +7,11 @@ interface GlobalUserChatsProviderProps {
 }
 
 export interface UserSchema {
-    user: User | undefined;
+    user: User | undefined,
 }
 
 const initialState: UserSchema = {
-    user: undefined
+    user: undefined,
 };
 
 interface UserActionsSchema {
@@ -21,8 +22,6 @@ const UserContext = createContext<UserSchema>(initialState);
 const UserActionsContext = createContext<UserActionsSchema | undefined>(undefined);
 
 export const UserGlobalContext = ({children}: GlobalUserChatsProviderProps) => {
-
-    //will be set dyamically
     const [user, setUser] = useState<User | undefined>(undefined);
 
     const setUserData = (userArg: User) => {
@@ -31,14 +30,14 @@ export const UserGlobalContext = ({children}: GlobalUserChatsProviderProps) => {
 
     const actions = useMemo(
         () => ({
-            setUserData
+            setUserData,
         }),
         [setUserData],
     );
 
     const state = useMemo(() => {
         return {
-            user
+            user,
         };
     }, [user]);
 

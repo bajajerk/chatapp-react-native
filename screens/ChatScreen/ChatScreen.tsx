@@ -6,7 +6,8 @@ import {Liquidity} from '../BasePage/Liquidity/Liquidity';
 import {ChatMessage, User, UserChats} from "../../schema/user";
 import {TextXLarge} from '../../components/Typography';
 import {useUserChatsContextActions, useUserDataContext} from "../../contexts";
-import { StackParams } from '../../navigation';
+import { StackParams } from '../../stackparams';
+
 
 type RouteProps = RouteProp<StackParams, 'ChatScreen'>;
 

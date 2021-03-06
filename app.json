@@ -25,10 +25,12 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.bajajerk30.chatrn"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
-    }
+    },
+    "description": ""
   }
 }
