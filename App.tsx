@@ -4,7 +4,17 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Provider} from "react-native-paper";
 import * as Localization from 'expo-localization';
 import i18n from 'i18n-js';
+import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 
+const theme = {
+    ...DefaultTheme,
+    roundness: 2,
+    colors: {
+        ...DefaultTheme.colors,
+        primary: '#075E54',
+        accent: 'yellow',
+    },
+};
 import {LocalisationContext, UserChatContext, UserGlobalContext} from './contexts';
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
@@ -30,10 +40,10 @@ export default function App() {
                 <UserGlobalContext>
                     <UserChatContext>
                         <LocalisationContext>
-                            <Provider>
+                            <PaperProvider theme={theme}>
                                 <Navigation colorScheme={colorScheme}/>
                                 <StatusBar/>
-                            </Provider>
+                            </PaperProvider>
                         </LocalisationContext>
                     </UserChatContext>
                 </UserGlobalContext>

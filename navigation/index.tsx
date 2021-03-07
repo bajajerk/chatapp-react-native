@@ -9,7 +9,6 @@ import LinkingConfiguration from './LinkingConfiguration';
 import {useLocalisationGlobalContext, useUserDataContextActions} from "../contexts";
 import {ChatListScreen} from '../screens/ChatsListScreen/ChatsListScreen';
 import {ChatScreen} from "../screens/ChatScreen/ChatScreen";
-// import {NavigationBar} from '../components/NavigationBar';
 import {Language} from "../constants/Language";
 import {Appbar, Menu} from "react-native-paper";
 
@@ -59,10 +58,7 @@ export default function Navigation({colorScheme}: { colorScheme: ColorSchemeName
         );
     }
 
-
-
     const Stack = createStackNavigator();
-
     function RootNavigator() {
         return (
             <Stack.Navigator
