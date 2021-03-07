@@ -2,13 +2,12 @@ import React, {useEffect, useState} from 'react';
 import {StyleSheet, View, TextInput, Image, FlatList, Text, Button, TouchableOpacity} from 'react-native';
 import {RouteProp, useRoute} from '@react-navigation/native';
 
-import {Liquidity} from '../BasePage/Liquidity/Liquidity';
+import {Liquidity} from '../../utils/Liquidity/Liquidity';
 import {ChatMessage, User, UserChats} from "../../schema/user";
 import {TextMedium, TextXLarge} from '../../components/Typography';
 import {useLocalisationGlobalContext, useUserChatsContextActions, useUserDataContext} from "../../contexts";
 import {StackParams} from '../../stackparams';
 import moment from "moment";
-
 
 type RouteProps = RouteProp<StackParams, 'ChatScreen'>;
 
@@ -62,7 +61,7 @@ export const ChatScreen = () => {
                                     item.receivedById === userId ? styles.containerLeft : styles.containerRight,
                                 ]}
                             >
-                                <TextXLarge color={Liquidity.colors.main.black} key={item.id}>
+                                <TextXLarge key={item.id}>
                                     {item.text}
                                 </TextXLarge>
                                 <TextMedium>
@@ -77,7 +76,7 @@ export const ChatScreen = () => {
             <View style={styles.textInputContainer}>
                 <View style={{flex: 1}}>
                     <TextInput
-                        style={styles.input}
+                        style={styles.textInput}
                         autoCorrect={true}
                         value={newMessageText}
                         onChangeText={(newValue) => setNewMessageText(newValue)}
@@ -90,7 +89,6 @@ export const ChatScreen = () => {
                     <Image source={require('../../assets/icons/ic_messageSend.png')} style={{width: 24, height: 24}}/>
                 </TouchableOpacity>
             </View>
-
         </View>
     );
 };
@@ -99,44 +97,43 @@ export const ChatScreen = () => {
 const styles = StyleSheet.create({
     screenWrapper: {
         flex: 1,
-        backgroundColor: Liquidity.colors.main.white,
+        backgroundColor: Liquidity.colors.chatScreen.background
     },
     container: {
         width: '75%',
-        marginBottom: 15,
-        padding: 20,
+        marginBottom: Liquidity.measurements.spacing4,
+        padding: Liquidity.measurements.spacing5,
     },
     containerLeft: {
         alignSelf: 'flex-start',
-        backgroundColor: Liquidity.colors.chatScreen.peach,
-        borderBottomRightRadius: 20,
-        borderTopRightRadius: 20,
+        backgroundColor: Liquidity.colors.main.offPrimary,
+        borderBottomRightRadius: Liquidity.measurements.spacing5,
+        borderTopRightRadius: Liquidity.measurements.spacing5,
     },
     containerRight: {
         alignSelf: 'flex-end',
         backgroundColor: Liquidity.colors.chatScreen.lightMustard,
-        borderBottomLeftRadius: 20,
-        borderTopLeftRadius: 20,
-    },
-    input: {
-        margin: 10,
-        borderColor: Liquidity.colors.main.black,
-        fontSize: 20,
-        maxHeight: 250,
+        borderBottomLeftRadius: Liquidity.measurements.spacing5,
+        borderTopLeftRadius: Liquidity.measurements.spacing5,
     },
     textInputContainer: {
         display: 'flex',
         flexDirection: 'row',
-        backgroundColor: Liquidity.colors.chatScreen.peach,
         borderRadius: 30,
-        padding: 4,
-        marginHorizontal: 10,
-        marginVertical: 10,
+        padding: Liquidity.measurements.spacing1,
+        marginHorizontal: Liquidity.measurements.spacing2Half,
+        marginVertical: Liquidity.measurements.spacing2Half,
+        backgroundColor: Liquidity.colors.chatScreen.textInput
+    },
+    textInput: {
+        margin: Liquidity.measurements.spacing2,
+        fontSize: Liquidity.measurements.spacing5,
+        maxHeight: 250,
     },
     sendMessageIconContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 12,
+        padding: Liquidity.measurements.spacing3,
     },
 });
 

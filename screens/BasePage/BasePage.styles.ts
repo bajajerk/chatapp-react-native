@@ -1,4 +1,4 @@
-import { Liquidity } from './Liquidity/Liquidity';
+import { Liquidity } from '../../utils/Liquidity/Liquidity';
 import { StyleSheet } from 'react-native';
 import { BConstant } from '../../utils/BConstant/BConstant';
 

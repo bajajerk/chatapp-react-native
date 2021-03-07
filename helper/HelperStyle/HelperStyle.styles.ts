@@ -1,5 +1,5 @@
 import { Platform, StatusBar, StyleSheet } from 'react-native';
-import { Liquidity } from '../../screens/BasePage/Liquidity/Liquidity';
+import { Liquidity } from '../../utils/Liquidity/Liquidity';
 import { HelperMethod } from '../HelperMethod/HelperMethod';
 
 export const helperStyle = StyleSheet.create({

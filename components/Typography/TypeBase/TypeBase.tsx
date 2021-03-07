@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text } from 'react-native';
-import { Liquidity } from '../../../screens/BasePage/Liquidity/Liquidity';
+import { Liquidity } from '../../../utils/Liquidity/Liquidity';
 import { TypeBaseProps } from '../schema';
 
 export const TypeBase: React.FC<TypeBaseProps> = ({

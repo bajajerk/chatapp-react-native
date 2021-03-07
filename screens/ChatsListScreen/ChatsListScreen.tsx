@@ -9,11 +9,9 @@ import i18n from 'i18n-js';
 
 import {useLocalisationGlobalContext, useUserChatsContext} from "../../contexts";
 import {StackParams} from '../../stackparams';
-import {Liquidity} from "../BasePage/Liquidity/Liquidity";
+import {Liquidity} from "../../utils/Liquidity/Liquidity";
 
 type NavigationProps = StackNavigationProp<StackParams, 'ChatListScreen'>;
-
-
 const initialLayout = {width: Dimensions.get('window').width};
 
 export const ChatListScreen = () => {
@@ -61,7 +59,6 @@ export const ChatListScreen = () => {
         </View>
     );
 
-
     const renderScene = SceneMap({
         first: ChatsRoute,
         second: StatusRoute,
@@ -77,10 +74,4 @@ export const ChatListScreen = () => {
         />
     );
 }
-
-const styles = StyleSheet.create({
-    scene: {
-        flex: 1,
-    },
-});
 

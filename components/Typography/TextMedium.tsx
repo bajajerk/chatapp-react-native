@@ -1,7 +1,7 @@
 import React from 'react';
 import { TypeBase } from './TypeBase/TypeBase';
 import { TextProps } from './schema';
-import { Liquidity } from '../../screens/BasePage/Liquidity/Liquidity';
+import { Liquidity } from '../../utils/Liquidity/Liquidity';
 
 export const TextMedium: React.FC<TextProps> = ({
   isEmphasis,
