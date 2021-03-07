@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {StyleSheet, FlatList, Text, TouchableOpacity, View, Dimensions} from 'react-native';
+import {useState} from 'react';
 import {Avatar, List} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
@@ -8,7 +9,6 @@ import i18n from 'i18n-js';
 
 import {useLocalisationGlobalContext, useUserChatsContext} from "../../contexts";
 import {StackParams} from '../../stackparams';
-import {useState} from 'react';
 
 type NavigationProps = StackNavigationProp<StackParams, 'ChatListScreen'>;
 
@@ -18,16 +18,13 @@ const initialLayout = {width: Dimensions.get('window').width};
 export const ChatListScreen = () => {
     const {navigate} = useNavigation<NavigationProps>();
     const {userChats} = useUserChatsContext();
-    const { t, locale, setLocale } = useLocalisationGlobalContext();
-
+    const {t} = useLocalisationGlobalContext();
 
     const [index, setIndex] = useState(0);
     const [routes] = useState([
         {key: 'first', title: t('chats')},
         {key: 'second', title: t('status')},
     ]);
-
-    console.log(locale)
 
     const ChatsRoute = () => {
         return (
@@ -38,7 +35,7 @@ export const ChatListScreen = () => {
                         <TouchableOpacity onPress={() => navigate('ChatScreen', {friendUserId: item.id2})}>
                             <List.Item
                                 title={item.user2Name}
-                                description={item.messages.length ? item.messages[item.messages.length - 1].text : ''}
+                                description={item.messages.length ? item.messages[0].text : ''}
                                 left={props => <Avatar.Image size={36} source={{
                                     uri:
                                     item.user2ImageUrl
@@ -66,7 +63,6 @@ export const ChatListScreen = () => {
         first: ChatsRoute,
         second: StatusRoute,
     });
-
 
     return (
         <TabView

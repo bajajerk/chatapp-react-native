@@ -6,10 +6,9 @@ export const LocalizationContext = createContext<any>(undefined);
 
 export const LocalisationContext = ({children}: any) => {
     const [locale, setLocale] = useState(Localization.locale);
-    // @ts-ignore
     const localizationContext = useMemo(
         () => ({
-            t: (scope, options) => i18n.t(scope, {locale, ...options}),
+            t: (scope: i18n.Scope, options: i18n.TranslateOptions | undefined) => i18n.t(scope, {locale, ...options}),
             locale,
             setLocale,
         }),

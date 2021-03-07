@@ -2,18 +2,21 @@ import {NavigationContainer, DefaultTheme, DarkTheme} from '@react-navigation/na
 import {createStackNavigator} from '@react-navigation/stack';
 import * as React from 'react';
 import {ColorSchemeName} from 'react-native';
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
+
 
 import LinkingConfiguration from './LinkingConfiguration';
 import {useLocalisationGlobalContext, useUserDataContextActions} from "../contexts";
 import {ChatListScreen} from '../screens/ChatsListScreen/ChatsListScreen';
 import {ChatScreen} from "../screens/ChatScreen/ChatScreen";
-import {Appbar, Menu} from 'react-native-paper';
+// import {NavigationBar} from '../components/NavigationBar';
+import {Language} from "../constants/Language";
+import {Appbar, Menu} from "react-native-paper";
 
 export default function Navigation({colorScheme}: { colorScheme: ColorSchemeName }) {
 
     const {setUserData} = useUserDataContextActions();
-    const {setLocale} = useLocalisationGlobalContext();
+    const {setLocale, locale, t} = useLocalisationGlobalContext();
 
     useEffect(() => {
         setUserData({
@@ -22,16 +25,26 @@ export default function Navigation({colorScheme}: { colorScheme: ColorSchemeName
         })
     }, []);
 
-    // @ts-ignore
-    function CustomNavigationBar({navigation, previous}) {
-        const [visible, setVisible] = React.useState(false);
+
+    const NavigationBar = ({navigation, previous}) => {
+        const [visible, setVisible] = useState(false);
         const openMenu = () => setVisible(true);
         const closeMenu = () => setVisible(false);
+
+
+        const switchLanguage = () => {
+            if (locale === Language.EN) {
+                setLocale('hd');
+            } else {
+                setLocale('en');
+            }
+            closeMenu();
+        }
 
         return (
             <Appbar.Header>
                 {previous ? <Appbar.BackAction onPress={navigation.goBack}/> : null}
-                <Appbar.Content title="Qohoo Chat App"/>
+                <Appbar.Content title={t('chatApp')}/>
                 {!previous ? (
                     <Menu
                         visible={visible}
@@ -39,12 +52,13 @@ export default function Navigation({colorScheme}: { colorScheme: ColorSchemeName
                         anchor={
                             <Appbar.Action icon="menu" color="white" onPress={openMenu}/>
                         }>
-                        <Menu.Item onPress={() => setLocale('hd')} title="Change Language"/>
+                        <Menu.Item onPress={switchLanguage} title={t('changeLanguage')}/>
                     </Menu>
                 ) : null}
             </Appbar.Header>
         );
     }
+
 
 
     const Stack = createStackNavigator();
@@ -53,14 +67,13 @@ export default function Navigation({colorScheme}: { colorScheme: ColorSchemeName
         return (
             <Stack.Navigator
                 screenOptions={{
-                    header: (props) => <CustomNavigationBar {...props} />,
+                    header: (props) => <NavigationBar {...props} />,
                 }}>
                 <Stack.Screen name={"ChatListScreen"} component={ChatListScreen} options={{headerTitle: 'Chats'}}/>
                 <Stack.Screen name={"ChatScreen"} component={ChatScreen} options={{headerTitle: 'Chats'}}/>
             </Stack.Navigator>
         );
     }
-
 
     return (
         <NavigationContainer

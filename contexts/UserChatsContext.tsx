@@ -11,20 +11,20 @@ const db = [
         messages: [
             {
                 id: '33',
-                text: 'Hi Mayank',
+                text: 'vimal=> aseem',
                 type: 'TEXT',
-                timeStamp: '123121212',
+                timeStamp: '1615063710108',
                 sentById: '2',
                 receivedById: '1'
             },
-            {
-                id: '3233',
-                text: 'Hi Vimal, how are you',
-                type: 'TEXT',
-                timeStamp: '123121212',
-                sentById: '1',
-                receivedById: '2'
-            },
+            // {
+            //     id: '3233',
+            //     text: 'Hi Vimal, how are you',
+            //     type: 'TEXT',
+            //     timeStamp: '1615063710108',
+            //     sentById: '1',
+            //     receivedById: '2'
+            // },
         ]
     },
 
@@ -35,19 +35,19 @@ const db = [
         user2Name: 'Mayank',
         user2ImageUrl: 'https://instagram.famd8-1.fna.fbcdn.net/v/t51.2885-19/s320x320/147468840_3853384498054038_1185376672293681406_n.jpg?tp=1&_nc_ht=instagram.famd8-1.fna.fbcdn.net&_nc_ohc=TdslWTeZgaAAX8SMAJh&oh=591b9aa55e7c2bcbe92474846bf35519&oe=606E1834',
         messages: [
-            {
-                id: '3312',
-                text: 'Hi Mayank, Aseem this side. Whats the status of assignment ',
-                type: 'TEXT',
-                timeStamp: '123121212',
-                sentById: '1',
-                receivedById: '3'
-            },
+            // {
+            //     id: '3312',
+            //     text: 'Hi Mayank, Aseem this side. Whats the status of assignment ',
+            //     type: 'TEXT',
+            //     timeStamp: '1615063710108',
+            //     sentById: '1',
+            //     receivedById: '3'
+            // },
             {
                 id: '321233',
-                text: 'Hi Aseem, how are you',
+                text: 'mayank=> aassen',
                 type: 'TEXT',
-                timeStamp: '123121212',
+                timeStamp: '1615063710108',
                 sentById: '3',
                 receivedById: '1'
             },
@@ -88,7 +88,7 @@ export const UserChatContext = ({children}: GlobalUserChatsProviderProps) => {
         let userChatsCopy: UserChats[] = [];
         chats.map(c => {
             if (c.id2 === id2) {
-                userChatsCopy.push({...c, messages: [...c.messages, message]})
+                userChatsCopy.push({...c, messages: [message, ...c.messages]})
             } else {
                 userChatsCopy.push(c);
             }

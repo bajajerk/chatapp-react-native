@@ -13,8 +13,8 @@ import Navigation from './navigation';
 
 // TODO, add to json
 i18n.translations = {
-    en: {chats: 'Chats', status: 'Status'},
-    hd: {chats: 'बातचीत', status: 'स्टेट्स'},
+    en: {chats: 'Chats', status: 'Status', changeLanguage: 'Change Language', chatApp: 'Chat App', typeMessage: 'Type message'},
+    hd: {chats: 'बातचीत', status: 'स्टेट्स', changeLanguage: 'भाषा बदलें', chatApp: 'चैट ऐप', typeMessage: 'संदेश टाइप करें'}
 };
 i18n.fallbacks = true;
 
