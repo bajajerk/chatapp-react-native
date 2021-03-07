@@ -3,14 +3,13 @@ import {createStackNavigator} from '@react-navigation/stack';
 import * as React from 'react';
 import {ColorSchemeName} from 'react-native';
 import {useEffect, useState} from "react";
-
+import {Appbar, Menu} from "react-native-paper";
 
 import LinkingConfiguration from './LinkingConfiguration';
 import {useLocalisationGlobalContext, useUserDataContextActions} from "../contexts";
 import {ChatListScreen} from '../screens/ChatsListScreen/ChatsListScreen';
 import {ChatScreen} from "../screens/ChatScreen/ChatScreen";
 import {Language} from "../constants/Language";
-import {Appbar, Menu} from "react-native-paper";
 
 export default function Navigation({colorScheme}: { colorScheme: ColorSchemeName }) {
     const {setUserData} = useUserDataContextActions();

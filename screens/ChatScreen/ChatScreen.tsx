@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, TextInput, Image, FlatList, Text, Button, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, TextInput, Image, FlatList, TouchableOpacity} from 'react-native';
 import {RouteProp, useRoute} from '@react-navigation/native';
+import moment from "moment";
 
 import {Liquidity} from '../../utils/Liquidity/Liquidity';
-import {ChatMessage, User, UserChats} from "../../schema/user";
+import {ChatMessage, User} from "../../schema/user";
 import {TextMedium, TextXLarge} from '../../components/Typography';
 import {useLocalisationGlobalContext, useUserChatsContextActions, useUserDataContext} from "../../contexts";
 import {StackParams} from '../../stackparams';
-import moment from "moment";
 
 type RouteProps = RouteProp<StackParams, 'ChatScreen'>;
 
