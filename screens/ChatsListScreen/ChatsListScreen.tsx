@@ -27,7 +27,7 @@ export const ChatListScreen = () => {
 
     const ChatsRoute = () => {
         return (
-            <>
+            <View style={styles.screenWrapper}>
                 <FlatList
                     data={userChats}
                     renderItem={({item, index}) => (
@@ -47,7 +47,7 @@ export const ChatListScreen = () => {
                     )}
                     keyExtractor={event => event.id}
                 />
-            </>
+            </View>
         );
     }
 
@@ -59,7 +59,7 @@ export const ChatListScreen = () => {
         </View>
     );
 
-    const renderScene = SceneMap({
+    const renderTabNavigation = SceneMap({
         first: ChatsRoute,
         second: StatusRoute,
     });
@@ -67,11 +67,18 @@ export const ChatListScreen = () => {
     return (
         <TabView
             navigationState={{index, routes}}
-            renderScene={renderScene}
+            renderScene={renderTabNavigation}
             onIndexChange={setIndex}
             initialLayout={initialLayout}
             renderTabBar={props => <TabBar {...props} style={{backgroundColor: Liquidity.colors.main.primary}}/>}
         />
     );
 }
+
+const styles = StyleSheet.create({
+    screenWrapper: {
+        flex: 1,
+        backgroundColor: Liquidity.colors.background.light
+    }
+})
 

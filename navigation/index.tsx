@@ -13,7 +13,6 @@ import {Language} from "../constants/Language";
 import {Appbar, Menu} from "react-native-paper";
 
 export default function Navigation({colorScheme}: { colorScheme: ColorSchemeName }) {
-
     const {setUserData} = useUserDataContextActions();
     const {setLocale, locale, t} = useLocalisationGlobalContext();
 
@@ -24,7 +23,7 @@ export default function Navigation({colorScheme}: { colorScheme: ColorSchemeName
         })
     }, []);
 
-
+    // @ts-ignore
     const NavigationBar = ({navigation, previous}) => {
         const [visible, setVisible] = useState(false);
         const openMenu = () => setVisible(true);
@@ -59,6 +58,7 @@ export default function Navigation({colorScheme}: { colorScheme: ColorSchemeName
     }
 
     const Stack = createStackNavigator();
+
     function RootNavigator() {
         return (
             <Stack.Navigator

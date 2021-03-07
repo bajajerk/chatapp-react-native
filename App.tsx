@@ -2,7 +2,7 @@ import {StatusBar} from 'expo-status-bar';
 import React from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import i18n from 'i18n-js';
-import {DefaultTheme, Provider as PaperProvider} from 'react-native-paper';
+import {Provider as PaperProvider} from 'react-native-paper';
 
 import EN from './translation/en.json';
 import HD from './translation/hd.json';

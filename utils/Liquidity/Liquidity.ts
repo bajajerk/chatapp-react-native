@@ -6,7 +6,8 @@ export const Liquidity = {
             secondary: '#103F76',
         },
         background: {
-            primary: '#075E54'
+            primary: '#075E54',
+            light: 'white'
         },
         chatScreen: {
             peach: '#FCEFED',

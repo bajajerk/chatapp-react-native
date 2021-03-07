@@ -2,6 +2,6 @@
   "chats": "Chats",
   "status": "Status",
   "changeLanguage": "Change Language",
-  "chatApp": "Chat App",
-  "typeMessage": "Type message"
+  "chatApp": 'Chat App',
+  "typeMessage": 'Type message'
 }
